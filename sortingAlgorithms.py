@@ -161,21 +161,29 @@ def tim_sort(A):
 if __name__ == '__main__':
 
     # input list sizes used to generate random lists.
-    input_sizes = [i for i in range(100, 5000, 500)]
+    input_sizes = [i for i in range(100, 25000, 500)]
 
     # Calculate the run times for the different sorting algorithms given the input sizes.
     sort_times = {
-            'bubble_sort' : [ sort_time(bubble_sort, rand_list(i) ) for i in tqdm(input_sizes,'bubble_sort') ],
-            'selection_sort' : [ sort_time(selection_sort, rand_list(i) ) for i in tqdm(input_sizes, 'selection_sort') ],
-            'insertion_sort' : [ sort_time(insertion_sort, rand_list(i) ) for i in tqdm(input_sizes, 'insertion_sort') ],
+            'bubble_sort' : [ sort_time(bubble_sort, rand_list(i) ) for i in tqdm(input_sizes[:10],'bubble_sort') ],
+            'selection_sort' : [ sort_time(selection_sort, rand_list(i) ) for i in tqdm(input_sizes[:10], 'selection_sort') ],
+            'insertion_sort' : [ sort_time(insertion_sort, rand_list(i) ) for i in tqdm(input_sizes[:10], 'insertion_sort') ],
             'merge_sort' : [ sort_time(merge_sort, rand_list(i) ) for i in tqdm(input_sizes, 'merge_sort') ],
             'heap_sort' : [ sort_time(heap_sort, rand_list(i) ) for i in tqdm(input_sizes, 'heap_sort') ],
             'quick_sort' : [ sort_time(quick_sort, rand_list(i) ) for i in tqdm(input_sizes, 'quick_sort') ],
             'radix_sort' : [ sort_time(radix_sort, rand_list(i) ) for i in tqdm(input_sizes, 'radix_sort') ]
     }
 
+    n_squared = {'bubble_sort', 'selection_sort', 'insertion_sort'}
+
     for sort in sort_times:
-        plt.plot(input_sizes, sort_times[sort], label = sort.replace('_', ' ').title() )
+        if sort in n_squared:
+            plt.plot(input_sizes[:10], sort_times[sort], label = sort.replace('_', ' ').title() )
+        else:
+            plt.plot(input_sizes, sort_times[sort], label = sort.replace('_', ' ').title() )
 
     plt.legend(loc='lower right')
+    plt.ylabel('Time (seconds)')
+    plt.xlabel('List Size')
+
     plt.show()
