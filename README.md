@@ -4,4 +4,4 @@ Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Heap Sort, Quick Sort, 
 Reference-style: 
 ![Sorting times for various sorting algorithms][logo]
 
-[logo]: https://github.com/TadayoshiCarvajal/Sorting-in-Python/blob/master/sortingPerformance.png
+[logo]: https://github.com/TadayoshiCarvajal/Sorting-in-Python/blob/master/sort_performance.png
